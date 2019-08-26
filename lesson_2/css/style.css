@@ -29,7 +29,8 @@
 .products {
   width: 100%;
   display: flex;
-  justify-content: center; }
+  flex-direction: column;
+  align-items: center; }
   .products__wrap {
     display: flex;
     justify-content: space-around;
@@ -53,6 +54,11 @@
     color: #8a8a8a; }
     .products__button:hover {
       border: 1px solid rgba(13, 227, 0, 0.66);
-      color: rgba(13, 227, 0, 0.66); }
+      color: rgba(13, 227, 0, 0.66);
+      background-color: rgba(13, 227, 0, 0.08); }
+  .products__price {
+    display: flex;
+    justify-content: flex-start;
+    padding: 20px; }
 
 /*# sourceMappingURL=style.css.map */

@@ -36,7 +36,8 @@ $color__text: #8a8a8a
 .products
   width: 100%
   display: flex
-  justify-content: center
+  flex-direction: column
+  align-items: center
 
   &__wrap
     display: flex
@@ -65,4 +66,9 @@ $color__text: #8a8a8a
     &:hover
       border: 1px solid $color__main
       color: $color__main
-      background-color: rgba(13, 227, 0, 0.37)
+      background-color: rgba(13, 227, 0, 0.08)
+
+  &__price
+    display: flex
+    justify-content: flex-start
+    padding: 20px
