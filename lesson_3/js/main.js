@@ -94,7 +94,59 @@ class ProductItem {
     }
 }
 
+class BasketList {
+    constructor(container = '.basket') {
+        this.container = container;
+        this.goods = [];
+        this.allBasket = [];
+        this._getBasket()
+            .then(data => {
+                this.goods = [...data.contents];
+                this._render();
+            });
+    }
+
+    _getBasket() {
+        return fetch(`${API}/getBasket.json`)
+            .then(result => result.json())
+            .catch(error => {
+                console.log(error);
+            })
+    }
+
+    _render() {
+        const block = document.querySelector(this.container);
+
+        for (let basket of this.goods) {
+            const basketObject = new BasketItem(basket);
+            this.allBasket.push(basketObject);
+            block.insertAdjacentHTML('beforeend', basketObject.render())
+        }
+    }
+}
+
+class BasketItem {
+    constructor(basket, img = 'https://placehold.it/200x150') {
+        this.title = basket.title;
+        this.price = basket.price;
+        this.id = basket.id;
+        this.img = img;
+    }
+
+    render() {
+        return `<div class="product-item" data-id="${this.id}">
+                <img src="${this.img}" alt="Some img">
+                <div class="desc">
+                    <h3>${this.title}</h3>
+                    <p>${this.price} \u20bd</p>
+                    <button class="buy-btn">Купить</button>
+                </div>
+            </div>`;
+    }
+}
+
 const list = new ProductList();
+const Basket = new BasketList();
 
 // const products = [
 //   {id: 1, title: 'Notebook', price: 1000},
